@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>KierruSwap</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">KierruSwap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <button id="login_button" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Sign in with Metamask</button>
+            <button id="logout_button" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
+        </div>
+      </nav>
+    <div class="alert alert-dark message" role="alert">
+        Hello World! This is the version 1 for KierruSwap. Please bear with the UI, this is still not final. I attempted this project because I hate gas fees. In this tool, you can now buy a horse without paying high 
+        gas fees! Right now, this site is using a third party swapper that charge 1% fee, it goes directly to the third party. For the charge to use this service, it will be 1 MATIC flat rate that will be use in the future plans below. 
+        <hr>
+        Roadmap
+        <ul>
+            <li>Change the swapper to remove the 1% fee.</li>
+            <li>Improve the website, fix the UI, add more information in swapping.</li>
+            <li>Add MATIC topup feature.</li>
+            <li>Add a withdraw feature, this means less gas fees in cashing out to real money.</li>
+            <li>NFT membership, no more fees! Plus get whitelisted on my upcoming NFT game :)</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-6 offset-md-3" id="window">
+                <h4>Swap</h4>
+                <div id="form">
+                    <div class="swapbox">
+                        <div class="swapbox_select token_select" id="from_token_select">
+                            <img class="token_image" id="from_token_img">
+                            <span id="from_token_text"></span>
+                        </div>
+                        <div id="lbl_matic_balance" class="from_token_style">Balance: <span id="matic_balance"></span></div>
+                        <div class="swapbox_select">
+                            <input class="number form-control w3-input" placeholder="amount" type="number" id="from_amount">
+                        </div>
+                        <span id="matic_estimated_amount" class="from_token_amount_style"></span>
+                    </div>
+                    <div class="swapbox">
+                        <div class="swapbox_select token_select" id="to_token_select">
+                            <img class="token_image" id="to_token_img">
+                            <span id="to_token_text"></span>
+                        </div>
+                        <div id="lbl_zed_balance" class="to_token_style">ZED Balance: <span id="zed_balance"></span></div>
+                        <div class="swapbox_select">
+                            <input class="number" placeholder="Estimated amount" type="number" id="to_amount">
+                        </div>
+                        <span id="weth_estimated_amount" class="to_token_amount_style"></span>
+                    </div>
+                    <!-- <div>Estimated Gas: <span id="gas_estimate"></span></div> -->
+                    <button disabled class="btn btn-large btn-primary btn-block" id="swap_button">
+                        <span id="loading_spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Swap
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./main.js"></script>
+  </body>
+</html>
